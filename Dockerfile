@@ -79,6 +79,10 @@ RUN echo "jenkins  ALL=(ALL)  ALL" >> /etc/sudoers
 
 RUN yum install -y cppcheck
 
+# Download sonarqube scanner
+RUN wget https://sonarsource.bintray.com/Distribution/sonar-scanner-cli/sonar-scanner-2.8.zip && unzip sonar-scanner-2.8.zip && mv sonar-scanner-2.8 /usr/lib/sonar-scanner
+RUN rm sonar-scanner-2.8.zip
+
 # Expose SSH port and run SSHD
 EXPOSE 22
 CMD ["/usr/sbin/sshd","-D"]
